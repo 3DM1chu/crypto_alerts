@@ -11,6 +11,7 @@ from decouple import config
 COINMARKETCAP_API_TOKEN = config("COINMARKETCAP_API_TOKEN")
 TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID")
+MINIMUM_PRICE_CHANGE_TO_ALERT_5M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_5M"))
 
 seconds_between_checks = 60
 prices: [] = json.loads(open("prices.json", "r").read())
@@ -35,9 +36,9 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
         if current_price > historic_price:
             price_change = (current_price / historic_price * 100) - 100
             if price_change >= min_price_change_percent:
-                sendTelegramNotification(f"{coin_name} - PRICE WENT UP by {price_change}% from {historic_price}$ at "
-                                         f"{prices[id]['data']['price_history'][-1 * intervals]['timestamp']} to"
-                                         f" {current_price}$ at {prices[id]['data']['price_history'][-1]['timestamp']}")
+                sendTelegramNotification(f"{coin_name}\nPRICE WENT UP by {price_change}% from {historic_price}$ at "
+                                         f"{prices[id]['data']['price_history'][-1 * intervals]['timestamp']}\nto\n"
+                                         f"{current_price}$ at {prices[id]['data']['price_history'][-1]['timestamp']}")
                 print(f"{coin_name} - PRICE WENT UP by {price_change}% from {historic_price}$ to {current_price}$")
     except:
         x = 0
@@ -48,9 +49,10 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
 def addPriceHistory(coin_name: str, date_to_add: str, price_to_add: float):
     id = getIndexOfCoin(coin_name)
     prices[id]["data"]["current_price"] = price_to_add
+    prices[id]["data"]["timestamp_of_current_price"] = date_to_add
     prices[id]["data"]["price_history"].append({"timestamp": date_to_add, "price": price_to_add})
     open("prices.json", "w").write(json.dumps(prices, indent=2))
-    checkIfPriceWentUp(coin_name, intervals=2, min_price_change_percent=0.05)
+    checkIfPriceWentUp(coin_name, intervals=2, min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_5M)
 
 
 def sendTelegramNotification(notification: str):

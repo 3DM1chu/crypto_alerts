@@ -2,27 +2,29 @@
   {
     "coin_name": "AVA",
     "data": {
-      "current_price": 0.59499336,
+      "current_price": 0.59467281,
       "currency": "USD",
       "price_history": [
         {
-          "timestamp": "2024-02-24T13:07:00.000Z",
-          "price": 0.59499336
+          "timestamp": "2024-02-24T13:10:00.000Z",
+          "price": 0.59467281
         }
-      ]
+      ],
+      "timestamp_of_current_price": "2024-02-24T13:10:00.000Z"
     }
   },
   {
     "coin_name": "Atletico De Madrid Fan Token",
     "data": {
-      "current_price": 2.71061417,
+      "current_price": 2.71105949,
       "currency": "USD",
       "price_history": [
         {
-          "timestamp": "2024-02-24T13:08:00.000Z",
-          "price": 2.71061417
+          "timestamp": "2024-02-24T13:11:00.000Z",
+          "price": 2.71105949
         }
-      ]
+      ],
+      "timestamp_of_current_price": "2024-02-24T13:11:00.000Z"
     }
   },
   {
@@ -32,49 +34,53 @@
       "currency": "USD",
       "price_history": [
         {
-          "timestamp": "2024-02-24T13:07:00.000Z",
+          "timestamp": "2024-02-24T13:10:00.000Z",
           "price": 9.61e-06
         }
-      ]
+      ],
+      "timestamp_of_current_price": "2024-02-24T13:10:00.000Z"
     }
   },
   {
     "coin_name": "Linear Finance",
     "data": {
-      "current_price": 0.0096903,
+      "current_price": 0.00967606,
       "currency": "USD",
       "price_history": [
         {
-          "timestamp": "2024-02-24T13:07:00.000Z",
-          "price": 0.0096903
+          "timestamp": "2024-02-24T13:10:00.000Z",
+          "price": 0.00967606
         }
-      ]
+      ],
+      "timestamp_of_current_price": "2024-02-24T13:10:00.000Z"
     }
   },
   {
     "coin_name": "TrueFi",
     "data": {
-      "current_price": 0.0639949,
+      "current_price": 0.06413799,
       "currency": "USD",
       "price_history": [
         {
-          "timestamp": "2024-02-24T13:07:00.000Z",
-          "price": 0.0639949
+          "timestamp": "2024-02-24T13:10:00.000Z",
+          "price": 0.06413799
         }
-      ]
+      ],
+      "timestamp_of_current_price": "2024-02-24T13:10:00.000Z"
     }
   },
   {
     "coin_name": "Terra",
     "data": {
-      "current_price": 0.6611818,
+      "current_price": 0.6627511,
       "currency": "USD",
       "price_history": [
         {
-          "timestamp": "2024-02-24T13:07:00.000Z",
-          "price": 0.6611818
+          "timestamp": "2024-02-24T13:10:00.000Z",
+          "price": 0.6627511
         }
-      ]
+      ],
+      "timestamp_of_current_price": "2024-02-24T13:10:00.000Z"
     }
   }
 ]
