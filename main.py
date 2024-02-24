@@ -13,9 +13,8 @@ TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID")
 
 seconds_between_checks = 60
-
-
-prices: [] = []
+prices: [] = json.loads(open("prices.json", "r").read())
+coins: [] = json.loads(open("coins.json", "r").read())
 
 
 def getIndexOfCoin(coin_name: str):
@@ -50,6 +49,7 @@ def addPriceHistory(coin_name: str, date_to_add: str, price_to_add: float):
     id = getIndexOfCoin(coin_name)
     prices[id]["data"]["current_price"] = price_to_add
     prices[id]["data"]["price_history"].append({"timestamp": date_to_add, "price": price_to_add})
+    open("prices.json", "w").write(json.dumps(prices, indent=2))
     checkIfPriceWentUp(coin_name, intervals=2, min_price_change_percent=0.05)
 
 
@@ -58,7 +58,6 @@ def sendTelegramNotification(notification: str):
     requests.get(url).json()
 
 
-coins: [] = json.loads(open("coins.json", "r").read())
 url = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest'
 parameters = {
     'id': ','.join(map(lambda x: str(x["id"]), coins))

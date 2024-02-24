@@ -1,0 +1,80 @@
+[
+  {
+    "coin_name": "AVA",
+    "data": {
+      "current_price": 0.59499336,
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T13:07:00.000Z",
+          "price": 0.59499336
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Atletico De Madrid Fan Token",
+    "data": {
+      "current_price": 2.71061417,
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T13:08:00.000Z",
+          "price": 2.71061417
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Shiba Inu",
+    "data": {
+      "current_price": 9.61e-06,
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T13:07:00.000Z",
+          "price": 9.61e-06
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Linear Finance",
+    "data": {
+      "current_price": 0.0096903,
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T13:07:00.000Z",
+          "price": 0.0096903
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "TrueFi",
+    "data": {
+      "current_price": 0.0639949,
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T13:07:00.000Z",
+          "price": 0.0639949
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Terra",
+    "data": {
+      "current_price": 0.6611818,
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T13:07:00.000Z",
+          "price": 0.6611818
+        }
+      ]
+    }
+  }
+]
