@@ -12,8 +12,10 @@ COINMARKETCAP_API_TOKEN = config("COINMARKETCAP_API_TOKEN")
 TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID")
 MINIMUM_PRICE_CHANGE_TO_ALERT_5M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_5M"))
+MINIMUM_PRICE_CHANGE_TO_ALERT_15M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_15M"))
+MINIMUM_PRICE_CHANGE_TO_ALERT_1H = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_1H"))
 
-INTERVALS = 5
+INTERVALS = 60
 seconds_between_checks = 60
 prices: [] = json.loads(open("prices.json", "r").read())
 coins: [] = json.loads(open("coins.json", "r").read())
@@ -56,7 +58,7 @@ def addPriceHistory(coin_name: str, date_to_add: str, price_to_add: float):
     prices[id]["data"]["timestamp_of_current_price"] = date_to_add
     prices[id]["data"]["price_history"].append({"timestamp": date_to_add, "price": price_to_add})
     open("prices.json", "w").write(json.dumps(prices, indent=2))
-    checkIfPriceWentUp(coin_name, intervals=INTERVALS, min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_5M)
+    checkIfPriceWentUp(coin_name, intervals=INTERVALS, min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
 
 
 def sendTelegramNotification(notification: str):
