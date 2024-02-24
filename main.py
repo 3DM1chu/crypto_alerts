@@ -13,6 +13,7 @@ TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID")
 MINIMUM_PRICE_CHANGE_TO_ALERT_5M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_5M"))
 
+INTERVALS = 5
 seconds_between_checks = 60
 prices: [] = json.loads(open("prices.json", "r").read())
 coins: [] = json.loads(open("coins.json", "r").read())
@@ -36,9 +37,10 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
         if current_price > historic_price:
             price_change = (current_price / historic_price * 100) - 100
             price_change = float("{:.3f}".format(price_change))
-            notification = (f"{coin_name}\n+ {price_change}%\n{historic_price}$ => {current_price}$ at "
-                            f"{prices[id]['data']['price_history'][-1]['timestamp']}\nsince "
-                            f"{prices[id]['data']['price_history'][-1 * intervals]['timestamp']}")
+            notification = (f"=======================\n"
+                            f"{coin_name}\n💹{price_change}%\n{historic_price}$ => {current_price}$\n"
+                            f"since {prices[id]['data']['price_history'][-1 * intervals]['timestamp']}\n"
+                            f"=======================")
             if price_change >= min_price_change_percent:
                 sendTelegramNotification(notification)
                 print(notification)
@@ -54,7 +56,7 @@ def addPriceHistory(coin_name: str, date_to_add: str, price_to_add: float):
     prices[id]["data"]["timestamp_of_current_price"] = date_to_add
     prices[id]["data"]["price_history"].append({"timestamp": date_to_add, "price": price_to_add})
     open("prices.json", "w").write(json.dumps(prices, indent=2))
-    checkIfPriceWentUp(coin_name, intervals=2, min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_5M)
+    checkIfPriceWentUp(coin_name, intervals=INTERVALS, min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_5M)
 
 
 def sendTelegramNotification(notification: str):
@@ -87,6 +89,7 @@ while True:
                 prices.append({"coin_name": coin_name,
                                "data": {
                                    "current_price": 0.0,
+                                   "timestamp_of_current_price": "",
                                    "currency": "USD",
                                    "price_history": []
                                }})
