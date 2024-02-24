@@ -35,11 +35,13 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
         historic_price = prices[id]["data"]["price_history"][-1 * intervals]["price"]
         if current_price > historic_price:
             price_change = (current_price / historic_price * 100) - 100
+            price_change = float("{:.3f}".format(price_change))
+            notification = (f"{coin_name}\n+ {price_change}%\n{historic_price}$ => {current_price}$ at "
+                            f"{prices[id]['data']['price_history'][-1]['timestamp']}\nsince "
+                            f"{prices[id]['data']['price_history'][-1 * intervals]['timestamp']}")
             if price_change >= min_price_change_percent:
-                sendTelegramNotification(f"{coin_name}\nPRICE WENT UP by {price_change}% from {historic_price}$ at "
-                                         f"{prices[id]['data']['price_history'][-1 * intervals]['timestamp']}\nto\n"
-                                         f"{current_price}$ at {prices[id]['data']['price_history'][-1]['timestamp']}")
-                print(f"{coin_name} - PRICE WENT UP by {price_change}% from {historic_price}$ to {current_price}$")
+                sendTelegramNotification(notification)
+                print(notification)
     except:
         x = 0
         # print("Not enough historicals yet")
