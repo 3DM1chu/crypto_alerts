@@ -5,33 +5,17 @@ from requests import Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 
+from decouple import config
+
+
+COINMARKETCAP_API_TOKEN = config("COINMARKETCAP_API_TOKEN")
+TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
+TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID")
+
 seconds_between_checks = 60
 
-api_key = "625eb5cb-ea14-48df-b28b-02abb4ad671c"
 
-prices = []
-
-pricesExample = [{
-    "coin_name": "EXAMPLE",
-    "data": {
-        "current_price": 0.0,
-        "currency": "USD",
-        "price_history": [
-            {
-                "timestamp": "101010",
-                "price": 0.044
-            }
-        ]
-    }
-},
-    {
-        "coin_name": "Atletico De Madrid Fan Token",
-        "data": {
-            "current_price": 0.0,
-            "currency": "USD",
-            "price_history": []
-        }
-    }]
+prices: [] = []
 
 
 def getIndexOfCoin(coin_name: str):
@@ -62,7 +46,7 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
 
 
 # add saving to file
-def addPriceHistory(coin_name: str, date_to_add: str, price_to_add: int):
+def addPriceHistory(coin_name: str, date_to_add: str, price_to_add: float):
     id = getIndexOfCoin(coin_name)
     prices[id]["data"]["current_price"] = price_to_add
     prices[id]["data"]["price_history"].append({"timestamp": date_to_add, "price": price_to_add})
@@ -70,24 +54,18 @@ def addPriceHistory(coin_name: str, date_to_add: str, price_to_add: int):
 
 
 def sendTelegramNotification(notification: str):
-    chat_id = "1833307590"
-    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={notification}"
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage?chat_id={TELEGRAM_CHAT_ID}&text={notification}"
     requests.get(url).json()
 
-TOKEN = "6873333455:AAHTcweQtGqxfVcdkdbtN1N80izrXPq8Ew0"
-url = f"https://api.telegram.org/bot{TOKEN}/getUpdates"
-requests.get(url)
 
-
-coins = [{"name": "ATM", "id": 5227}, {"name": "LUNA", "id": 20314}, {"name": "TRU", "id": 7725},
-         {"name": "SHIB", "id": 5994}, {"name": "AVA", "id": 2776}, {"name": "LINA", "id": 7102}]
+coins: [] = json.loads(open("coins.json", "r").read())
 url = 'https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest'
 parameters = {
-    'id': ','.join(map(lambda x: str(x["id"]), coins)),  # ATM, LUNA, TRU, SHIB, AVA, LINA
+    'id': ','.join(map(lambda x: str(x["id"]), coins))
 }
 headers = {
     'Accepts': 'application/json',
-    'X-CMC_PRO_API_KEY': api_key,
+    'X-CMC_PRO_API_KEY': COINMARKETCAP_API_TOKEN,
 }
 
 session = Session()

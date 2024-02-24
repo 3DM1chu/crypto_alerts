@@ -1,0 +1,25 @@
+[
+   {
+      "coin_name":"EXAMPLE",
+      "data":{
+         "current_price":0.0,
+         "currency":"USD",
+         "price_history":[
+            {
+               "timestamp":"101010",
+               "price":0.044
+            }
+         ]
+      }
+   },
+   {
+      "coin_name":"Atletico De Madrid Fan Token",
+      "data":{
+         "current_price":0.0,
+         "currency":"USD",
+         "price_history":[
+
+         ]
+      }
+   }
+]
