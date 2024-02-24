@@ -80,6 +80,7 @@ while True:
     try:
         response = session.get(url, params=parameters)
         data = json.loads(response.text)
+        print(data)
         for coin_id in data['data']:
             coin = data['data'][coin_id]
             coin_name = coin['name']
