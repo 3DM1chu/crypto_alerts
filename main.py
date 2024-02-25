@@ -34,18 +34,19 @@ def getIndexOfCoin(coin_name: str):
 def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent: float):
     id = getIndexOfCoin(coin_name)
     current_price = prices[id]["data"]["current_price"]
-    historic_price = current_price
     print(f"{len(prices[id]['data']['price_history'])} in DB and intervals: {intervals}")
     if len(prices[id]["data"]["price_history"]) > intervals + 1:
+        id_of_historical_price = -1 * intervals
         historic_price = prices[id]["data"]["price_history"][-1 * intervals]["price"]
     else:
+        id_of_historical_price = 0
         historic_price = prices[id]["data"]["price_history"][0]["price"]
     if current_price > historic_price:
         price_change = (current_price / historic_price * 100) - 100
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
                         f"{coin_name}\n💹{price_change}%\n{historic_price}$ => {current_price}$\n"
-                        f"since {prices[id]['data']['price_history'][-1 * intervals]['timestamp']}\n"
+                        f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
         if price_change >= min_price_change_percent:
             sendTelegramNotification(notification)
@@ -56,7 +57,7 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
                         f"{coin_name}\n📉{price_change}%\n{historic_price}$ => {current_price}$\n"
-                        f"since {prices[id]['data']['price_history'][-1 * intervals]['timestamp']}\n"
+                        f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
         if price_change >= min_price_change_percent:
             sendTelegramNotification(notification)
