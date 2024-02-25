@@ -145,6 +145,7 @@ while True:
             date = coin['last_updated']
             if getIndexOfCoin(coin_name) == -1:
                 prices.append({"coin_name": coin_name,
+                               "symbol": coin["symbol"],
                                "data": {
                                    "current_price": 0.0,
                                    "timestamp_of_current_price": "",
