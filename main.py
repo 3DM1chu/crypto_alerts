@@ -63,7 +63,7 @@ def checkIfPriceWasATHorATL(data: [], current_price):
 
 
 # 1 interval = 15s
-def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent: float):
+def checkIfPriceWentUp(coin_name: str, coin_symbol: str, intervals: int, min_price_change_percent: float):
     id = getIndexOfCoin(coin_name)
     current_price = prices[id]["data"]["current_price"]
     if len(prices[id]["data"]["price_history"]) > intervals + 1:
@@ -80,7 +80,7 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
         price_change = (current_price / historic_price * 100) - 100
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
-                        f"{coin_name}\n💹{price_change}%\n{historic_price}$ => {current_price}$\n"
+                        f"{coin_symbol} - {coin_name}\n💹{price_change}%\n{historic_price}$ => {current_price}$\n"
                         f"ATH in last hour"
                         f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
@@ -90,7 +90,7 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
         price_change = 100 - (current_price / historic_price * 100)
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
-                        f"{coin_name}\n📉{price_change}%\n{historic_price}$ => {current_price}$\n"
+                        f"{coin_symbol} - {coin_name}\n📉{price_change}%\n{historic_price}$ => {current_price}$\n"
                         f"ATL in last hour"
                         f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
@@ -100,7 +100,7 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
         price_change = 100 - (current_price / historic_price * 100)
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
-                        f"{coin_name}\n📉{price_change}%\n{historic_price}$ => {current_price}$\n"
+                        f"{coin_symbol} - {coin_name}\n📉{price_change}%\n{historic_price}$ => {current_price}$\n"
                         f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
         if price_change >= min_price_change_percent:
@@ -108,13 +108,13 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
 
 
 # add saving to file
-def addPriceHistory(coin_name: str, date_to_add: str, price_to_add: float):
+def addPriceHistory(coin_name: str, coin_symbol: str, date_to_add: str, price_to_add: float):
     id = getIndexOfCoin(coin_name)
     prices[id]["data"]["current_price"] = price_to_add
     prices[id]["data"]["timestamp_of_current_price"] = date_to_add
     prices[id]["data"]["price_history"].append({"timestamp": date_to_add, "price": price_to_add})
     open("prices.json", "w").write(json.dumps(prices, indent=2))
-    checkIfPriceWentUp(coin_name, intervals=INTERVALS, min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
+    checkIfPriceWentUp(coin_name, coin_symbol, intervals=INTERVALS, min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
 
 
 def sendTelegramNotification(notification: str):
@@ -141,6 +141,7 @@ while True:
         for coin_id in data['data']:
             coin = data['data'][coin_id]
             coin_name = coin['name']
+            coin_symbol = coin["symbol"]
             price = float("{:.8f}".format(float(coin['quote']['USD']['price'])))
             date = coin['last_updated']
             if getIndexOfCoin(coin_name) == -1:
@@ -152,7 +153,7 @@ while True:
                                    "currency": "USD",
                                    "price_history": []
                                }})
-            addPriceHistory(coin_name, date, price)
+            addPriceHistory(coin_name, coin_symbol, date, price)
     except (ConnectionError, Timeout, TooManyRedirects) as e:
         print(e)
     sleep(seconds_between_checks)
