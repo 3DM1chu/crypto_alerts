@@ -34,7 +34,6 @@ def getIndexOfCoin(coin_name: str):
 def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent: float):
     id = getIndexOfCoin(coin_name)
     current_price = prices[id]["data"]["current_price"]
-    print(f"{len(prices[id]['data']['price_history'])} in DB and intervals: {intervals}")
     if len(prices[id]["data"]["price_history"]) > intervals + 1:
         id_of_historical_price = -1 * intervals
         historic_price = prices[id]["data"]["price_history"][-1 * intervals]["price"]
@@ -50,8 +49,6 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
                         f"======================")
         if price_change >= min_price_change_percent:
             sendTelegramNotification(notification)
-
-        print(notification)
     elif current_price < historic_price:
         price_change = 100 - (current_price / historic_price * 100)
         price_change = float("{:.3f}".format(price_change))
@@ -61,8 +58,6 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
                         f"======================")
         if price_change >= min_price_change_percent:
             sendTelegramNotification(notification)
-
-        print(notification)
 
 
 # add saving to file
