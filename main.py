@@ -1,5 +1,7 @@
+from datetime import datetime, timedelta
 from time import sleep
 
+import pytz
 import requests
 from requests import Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
@@ -30,6 +32,32 @@ def getIndexOfCoin(coin_name: str):
     return -1
 
 
+def checkIfPriceWentUpInRecentTime(data: [], current_price):
+    poland_tz = pytz.timezone('Europe/Warsaw')
+
+    # Define the current time
+    current_time = datetime.now(poland_tz)
+
+    # Define the time threshold (1 hour)
+    time_threshold = timedelta(hours=1)
+
+    result = True
+
+    # Iterate over price history
+    for entry in data['price_history']:
+        # Convert the timestamp string to a datetime object
+        timestamp = datetime.strptime(entry['timestamp'], "%Y-%m-%dT%H:%M:%S.%fZ")
+        timestamp = pytz.utc.localize(timestamp).astimezone(poland_tz)
+
+        # Check if the timestamp is within the time threshold
+        if current_time - timestamp < time_threshold:
+            # Check if the price has changed
+            if entry['price'] > current_price:
+                result = False
+                break
+    return result
+
+
 # 1 interval = 15s
 def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent: float):
     id = getIndexOfCoin(coin_name)
@@ -40,20 +68,24 @@ def checkIfPriceWentUp(coin_name: str, intervals: int, min_price_change_percent:
     else:
         id_of_historical_price = 0
         historic_price = prices[id]["data"]["price_history"][0]["price"]
-    if current_price > historic_price:
+
+    ATH_1H = checkIfPriceWentUpInRecentTime(prices[id]["data"], current_price)
+    if current_price > historic_price and ATH_1H:
         price_change = (current_price / historic_price * 100) - 100
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
                         f"{coin_name}\n💹{price_change}%\n{historic_price}$ => {current_price}$\n"
+                        f"ATH in last hour"
                         f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
         if price_change >= min_price_change_percent:
             sendTelegramNotification(notification)
-    elif current_price < historic_price:
+    elif current_price < historic_price and ATH_1H:
         price_change = 100 - (current_price / historic_price * 100)
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
                         f"{coin_name}\n📉{price_change}%\n{historic_price}$ => {current_price}$\n"
+                        f"ATH in last hour"
                         f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
         if price_change >= min_price_change_percent:
