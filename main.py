@@ -12,13 +12,11 @@ from websocket import WebSocketApp
 TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID")
 MINIMUM_PRICE_CHANGE_TO_ALERT_1H = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_1H"))
+MINIMUM_PRICE_CHANGE_TO_ALERT_15M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_15M"))
 MINIMUM_PRICE_CHANGE_TO_SAVE_ENTRY = float(config("MINIMUM_PRICE_CHANGE_TO_SAVE_ENTRY"))
 
-INTERVALS = 60
-seconds_between_checks = 60
-
-
-# prices: [] = json.loads(open("prices.json", "r").read())
+INTERVALS_1H = 60
+INTERVALS_15M = 15
 
 
 class PriceEntry:
@@ -45,11 +43,39 @@ class Token:
 
     def addPriceEntry(self, price: float, _timestamp: datetime):
         old_price = self.getCurrentPrice()
+        self.getNearestPriceEntryToTimeframe(time_frame={"hours": 1})
         self.price_history.append(PriceEntry(price=price, timestamp=_timestamp))
-        # open("prices.json", "w").write(json.dumps(prices, indent=2))
-        self.checkIfPriceWentUp(old_price, intervals=INTERVALS,
+        self.checkIfPriceWentUp(old_price, intervals=INTERVALS_1H,
                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
         saveTokensHistoryToFIle()
+
+    def getNearestPriceEntryToTimeframe(self, time_frame):
+        # Parse current datetime
+        current_datetime = datetime.now()
+
+        # Initialize variables to store the closest entry and its difference
+        closest_entry = None
+        closest_difference = timedelta.max  # Initialize with a large value
+
+        # Define a timedelta object for 1 hour
+        one_hour = timedelta(**time_frame)
+
+        # Iterate through each entry in price history
+        for entry in self.price_history:
+            # Calculate the difference between the timestamp and the current time
+            time_difference = abs(entry.timestamp - current_datetime)
+
+            # Check if the difference is within the 1-hour range and closer than the current closest difference
+            if abs(time_difference - one_hour) < abs(closest_difference - one_hour):
+                closest_entry = entry
+                closest_difference = time_difference
+
+        # Print the closest entry and its difference
+        if closest_entry:
+            print(f"Closest entry to {time_frame} difference:", closest_entry)
+            print("Difference:", closest_difference)
+        else:
+            print("No entries found.")
 
     def checkIfPriceWentUp(self, old_price: float, intervals: int, min_price_change_percent: float):
         if self.getCurrentPrice() == old_price:
@@ -128,10 +154,10 @@ def sendTelegramNotification(notification: str):
 
 
 def loadCoinsToFetchFromFile():
-    coins: [] = json.loads(open("coins.json", "r").read())
-    for coin in coins:
+    _coins: [] = json.loads(open("coins.json", "r").read())
+    for coin in _coins:
         tokens.append(Token(coin["symbol"]))
-    return coins
+    return _coins
 
 
 def loadTokensHistoryFromFile():
@@ -177,7 +203,7 @@ tokens: List[Token] = loadTokensHistoryFromFile()
 coins = loadCoinsToFetchFromFile()
 
 
-def on_message(ws: WebSocketApp, message):
+def on_message(ws, message):
     message_json = json.loads(message)
     if len(message_json) > 5:
         trading_pair = message_json["s"]
@@ -202,15 +228,15 @@ def on_message(ws: WebSocketApp, message):
             token.addPriceEntry(current_price, datetime_obj)
 
 
-def on_error(ws: WebSocketApp, error):
+def on_error(ws, error):
     print(error)
 
 
-def on_close(ws: WebSocketApp, close_status_code, close_msg):
+def on_close(ws, close_status_code, close_msg):
     print("### closed ###")
 
 
-def on_open(ws: WebSocketApp):
+def on_open(ws):
     print("Connecting to binance websocket...")
     obj = {
         "method": "SUBSCRIBE",
@@ -218,26 +244,22 @@ def on_open(ws: WebSocketApp):
         "id": 1
     }
     for coin in coins:
-        symbol = str(coin["symbol"]).lower()
-        obj["params"].append(f"{symbol}usdt@aggTrade")
+        obj["params"].append(f"{str(coin['symbol']).lower()}usdt@aggTrade")
     print("Setupping coins to subscribe...")
     ws.send(json.dumps(obj))
     print("Sent coins to subscribe...")
 
 
-# socket = 'wss://stream.binance.com:9443/ws/ckbusdt@kline_1s'
 socket = 'wss://stream.binance.com:9443/ws'
 
 if __name__ == "__main__":
     websocket.enableTrace(False)
     ws = WebSocketApp(socket,  # "wss://api.gemini.com/v1/marketdata/BTCUSD",
-                                on_open=on_open,
-                                on_message=on_message,
-                                on_error=on_error,
-                                on_close=on_close)
+                      on_open=on_open,
+                      on_message=on_message,
+                      on_error=on_error,
+                      on_close=on_close)
     ws.run_forever(dispatcher=rel,
-                   reconnect=5)  # Set dispatcher to automatic reconnection, 5 second reconnect delay if connection closed unexpectedly
+                   reconnect=5)
     rel.signal(2, rel.abort)  # Keyboard Interrupt
     rel.dispatch()
-
-    sleep(seconds_between_checks)

@@ -1,5 +1,7 @@
-requests~=2.31.0
+requests
 python-decouple
 pytz
 websocket-client
 rel
+websocket
+decouple
