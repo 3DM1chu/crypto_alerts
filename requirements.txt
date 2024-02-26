@@ -3,3 +3,4 @@ python-decouple
 pytz
 websocket
 websocket-client
+rel
