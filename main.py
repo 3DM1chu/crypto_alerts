@@ -80,8 +80,10 @@ def checkIfPriceWentUp(coin_name: str, coin_symbol: str, intervals: int, min_pri
         price_change = (current_price / historic_price * 100) - 100
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
-                        f"{coin_symbol} - {coin_name}\n💹{price_change}%\n{historic_price}$ => {current_price}$\n"
-                        f"ATH in last hour"
+                        f"{coin_symbol} - {coin_name}\n"
+                        f"💹{price_change}%\n"
+                        f"{current_price}$\n"
+                        f"ATH in last hour\n"
                         f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
         if price_change >= min_price_change_percent:
@@ -90,8 +92,10 @@ def checkIfPriceWentUp(coin_name: str, coin_symbol: str, intervals: int, min_pri
         price_change = 100 - (current_price / historic_price * 100)
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
-                        f"{coin_symbol} - {coin_name}\n📉{price_change}%\n{historic_price}$ => {current_price}$\n"
-                        f"ATL in last hour"
+                        f"{coin_symbol} - {coin_name}\n"
+                        f"📉{price_change}%\n"
+                        f"{current_price}$\n"
+                        f"ATL in last hour\n"
                         f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
         if price_change >= min_price_change_percent:
@@ -100,7 +104,9 @@ def checkIfPriceWentUp(coin_name: str, coin_symbol: str, intervals: int, min_pri
         price_change = 100 - (current_price / historic_price * 100)
         price_change = float("{:.3f}".format(price_change))
         notification = (f"======================\n"
-                        f"{coin_symbol} - {coin_name}\n📉{price_change}%\n{historic_price}$ => {current_price}$\n"
+                        f"{coin_symbol} - {coin_name}\n"
+                        f"📉{price_change}%\n"
+                        f"{current_price}$\n"
                         f"since {prices[id]['data']['price_history'][id_of_historical_price]['timestamp']}\n"
                         f"======================")
         if price_change >= min_price_change_percent:
