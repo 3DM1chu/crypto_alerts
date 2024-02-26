@@ -1,0 +1,1160 @@
+[
+  {
+    "coin_name": "AVA",
+    "data": {
+      "current_price": 0.59105185,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T14:39:00.000Z",
+          "price": 0.59418866
+        },
+        {
+          "timestamp": "2024-02-24T14:40:00.000Z",
+          "price": 0.59415668
+        },
+        {
+          "timestamp": "2024-02-24T14:41:00.000Z",
+          "price": 0.59222302
+        },
+        {
+          "timestamp": "2024-02-24T14:42:00.000Z",
+          "price": 0.59231382
+        },
+        {
+          "timestamp": "2024-02-24T14:50:00.000Z",
+          "price": 0.5947087
+        },
+        {
+          "timestamp": "2024-02-24T14:51:00.000Z",
+          "price": 0.59470216
+        },
+        {
+          "timestamp": "2024-02-24T14:52:00.000Z",
+          "price": 0.59453275
+        },
+        {
+          "timestamp": "2024-02-24T14:53:00.000Z",
+          "price": 0.5949233
+        },
+        {
+          "timestamp": "2024-02-24T14:54:00.000Z",
+          "price": 0.59510774
+        },
+        {
+          "timestamp": "2024-02-24T14:55:00.000Z",
+          "price": 0.59510986
+        },
+        {
+          "timestamp": "2024-02-24T14:56:00.000Z",
+          "price": 0.59461154
+        },
+        {
+          "timestamp": "2024-02-24T14:57:00.000Z",
+          "price": 0.59505244
+        },
+        {
+          "timestamp": "2024-02-24T14:58:00.000Z",
+          "price": 0.59472446
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 0.59471618
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 0.59471618
+        },
+        {
+          "timestamp": "2024-02-24T15:01:00.000Z",
+          "price": 0.59487598
+        },
+        {
+          "timestamp": "2024-02-24T15:02:00.000Z",
+          "price": 0.59398406
+        },
+        {
+          "timestamp": "2024-02-24T15:04:00.000Z",
+          "price": 0.59475236
+        },
+        {
+          "timestamp": "2024-02-24T15:08:00.000Z",
+          "price": 0.59817753
+        },
+        {
+          "timestamp": "2024-02-24T15:09:00.000Z",
+          "price": 0.5983128
+        },
+        {
+          "timestamp": "2024-02-24T15:10:00.000Z",
+          "price": 0.59766681
+        },
+        {
+          "timestamp": "2024-02-24T15:11:00.000Z",
+          "price": 0.59880626
+        },
+        {
+          "timestamp": "2024-02-24T15:12:00.000Z",
+          "price": 0.59854279
+        },
+        {
+          "timestamp": "2024-02-24T15:13:00.000Z",
+          "price": 0.5977197
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.59105185
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.59105185
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Atletico De Madrid Fan Token",
+    "data": {
+      "current_price": 2.72589351,
+      "timestamp_of_current_price": "2024-02-25T14:56:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T14:40:00.000Z",
+          "price": 2.70833243
+        },
+        {
+          "timestamp": "2024-02-24T14:41:00.000Z",
+          "price": 2.70716809
+        },
+        {
+          "timestamp": "2024-02-24T14:42:00.000Z",
+          "price": 2.70716809
+        },
+        {
+          "timestamp": "2024-02-24T14:43:00.000Z",
+          "price": 2.70512957
+        },
+        {
+          "timestamp": "2024-02-24T14:51:00.000Z",
+          "price": 2.72763549
+        },
+        {
+          "timestamp": "2024-02-24T14:52:00.000Z",
+          "price": 2.71173786
+        },
+        {
+          "timestamp": "2024-02-24T14:53:00.000Z",
+          "price": 2.69731432
+        },
+        {
+          "timestamp": "2024-02-24T14:54:00.000Z",
+          "price": 2.71177549
+        },
+        {
+          "timestamp": "2024-02-24T14:55:00.000Z",
+          "price": 2.71270348
+        },
+        {
+          "timestamp": "2024-02-24T14:56:00.000Z",
+          "price": 2.71261728
+        },
+        {
+          "timestamp": "2024-02-24T14:57:00.000Z",
+          "price": 2.71152279
+        },
+        {
+          "timestamp": "2024-02-24T14:58:00.000Z",
+          "price": 2.7109999
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 2.71004369
+        },
+        {
+          "timestamp": "2024-02-24T15:00:00.000Z",
+          "price": 2.71020153
+        },
+        {
+          "timestamp": "2024-02-24T15:00:00.000Z",
+          "price": 2.71020153
+        },
+        {
+          "timestamp": "2024-02-24T15:02:00.000Z",
+          "price": 2.70869179
+        },
+        {
+          "timestamp": "2024-02-24T15:03:00.000Z",
+          "price": 2.70880169
+        },
+        {
+          "timestamp": "2024-02-24T15:05:00.000Z",
+          "price": 2.70923569
+        },
+        {
+          "timestamp": "2024-02-24T15:09:00.000Z",
+          "price": 2.71065188
+        },
+        {
+          "timestamp": "2024-02-24T15:10:00.000Z",
+          "price": 2.71115026
+        },
+        {
+          "timestamp": "2024-02-24T15:11:00.000Z",
+          "price": 2.71124135
+        },
+        {
+          "timestamp": "2024-02-24T15:12:00.000Z",
+          "price": 2.71109623
+        },
+        {
+          "timestamp": "2024-02-24T15:13:00.000Z",
+          "price": 2.71114569
+        },
+        {
+          "timestamp": "2024-02-24T15:14:00.000Z",
+          "price": 2.70965975
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 2.72589351
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 2.72589351
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Shiba Inu",
+    "data": {
+      "current_price": 9.65e-06,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T14:39:00.000Z",
+          "price": 9.61e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:40:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:41:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:42:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:50:00.000Z",
+          "price": 9.58e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:51:00.000Z",
+          "price": 9.58e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:52:00.000Z",
+          "price": 9.58e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:53:00.000Z",
+          "price": 9.58e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:54:00.000Z",
+          "price": 9.58e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:55:00.000Z",
+          "price": 9.58e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:56:00.000Z",
+          "price": 9.58e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:57:00.000Z",
+          "price": 9.58e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:58:00.000Z",
+          "price": 9.59e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T15:01:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T15:02:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T15:03:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T15:08:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T15:09:00.000Z",
+          "price": 9.6e-06
+        },
+        {
+          "timestamp": "2024-02-24T15:10:00.000Z",
+          "price": 9.61e-06
+        },
+        {
+          "timestamp": "2024-02-24T15:11:00.000Z",
+          "price": 9.61e-06
+        },
+        {
+          "timestamp": "2024-02-24T15:12:00.000Z",
+          "price": 9.61e-06
+        },
+        {
+          "timestamp": "2024-02-24T15:13:00.000Z",
+          "price": 9.61e-06
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 9.65e-06
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 9.65e-06
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Linear Finance",
+    "data": {
+      "current_price": 0.00963101,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T14:39:00.000Z",
+          "price": 0.00961631
+        },
+        {
+          "timestamp": "2024-02-24T14:40:00.000Z",
+          "price": 0.00961631
+        },
+        {
+          "timestamp": "2024-02-24T14:41:00.000Z",
+          "price": 0.00960289
+        },
+        {
+          "timestamp": "2024-02-24T14:42:00.000Z",
+          "price": 0.00960303
+        },
+        {
+          "timestamp": "2024-02-24T14:50:00.000Z",
+          "price": 0.00956272
+        },
+        {
+          "timestamp": "2024-02-24T14:51:00.000Z",
+          "price": 0.00956291
+        },
+        {
+          "timestamp": "2024-02-24T14:52:00.000Z",
+          "price": 0.00956301
+        },
+        {
+          "timestamp": "2024-02-24T14:53:00.000Z",
+          "price": 0.00955565
+        },
+        {
+          "timestamp": "2024-02-24T14:54:00.000Z",
+          "price": 0.00955885
+        },
+        {
+          "timestamp": "2024-02-24T14:55:00.000Z",
+          "price": 0.00956047
+        },
+        {
+          "timestamp": "2024-02-24T14:56:00.000Z",
+          "price": 0.00957515
+        },
+        {
+          "timestamp": "2024-02-24T14:57:00.000Z",
+          "price": 0.00957609
+        },
+        {
+          "timestamp": "2024-02-24T14:58:00.000Z",
+          "price": 0.00957583
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 0.00958406
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 0.00958406
+        },
+        {
+          "timestamp": "2024-02-24T15:01:00.000Z",
+          "price": 0.00958464
+        },
+        {
+          "timestamp": "2024-02-24T15:02:00.000Z",
+          "price": 0.00957443
+        },
+        {
+          "timestamp": "2024-02-24T15:04:00.000Z",
+          "price": 0.00957488
+        },
+        {
+          "timestamp": "2024-02-24T15:08:00.000Z",
+          "price": 0.00960676
+        },
+        {
+          "timestamp": "2024-02-24T15:09:00.000Z",
+          "price": 0.00960727
+        },
+        {
+          "timestamp": "2024-02-24T15:10:00.000Z",
+          "price": 0.0096063
+        },
+        {
+          "timestamp": "2024-02-24T15:11:00.000Z",
+          "price": 0.00962
+        },
+        {
+          "timestamp": "2024-02-24T15:12:00.000Z",
+          "price": 0.00961672
+        },
+        {
+          "timestamp": "2024-02-24T15:13:00.000Z",
+          "price": 0.00961672
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.00963101
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.00963101
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "TrueFi",
+    "data": {
+      "current_price": 0.06544924,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T14:39:00.000Z",
+          "price": 0.06361853
+        },
+        {
+          "timestamp": "2024-02-24T14:40:00.000Z",
+          "price": 0.06360058
+        },
+        {
+          "timestamp": "2024-02-24T14:41:00.000Z",
+          "price": 0.06361654
+        },
+        {
+          "timestamp": "2024-02-24T14:42:00.000Z",
+          "price": 0.06386935
+        },
+        {
+          "timestamp": "2024-02-24T14:50:00.000Z",
+          "price": 0.06530714
+        },
+        {
+          "timestamp": "2024-02-24T14:51:00.000Z",
+          "price": 0.06521568
+        },
+        {
+          "timestamp": "2024-02-24T14:52:00.000Z",
+          "price": 0.06520489
+        },
+        {
+          "timestamp": "2024-02-24T14:53:00.000Z",
+          "price": 0.06515682
+        },
+        {
+          "timestamp": "2024-02-24T14:54:00.000Z",
+          "price": 0.06515896
+        },
+        {
+          "timestamp": "2024-02-24T14:55:00.000Z",
+          "price": 0.06512244
+        },
+        {
+          "timestamp": "2024-02-24T14:56:00.000Z",
+          "price": 0.06512494
+        },
+        {
+          "timestamp": "2024-02-24T14:57:00.000Z",
+          "price": 0.06518409
+        },
+        {
+          "timestamp": "2024-02-24T14:58:00.000Z",
+          "price": 0.06519677
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 0.06526062
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 0.06526062
+        },
+        {
+          "timestamp": "2024-02-24T15:01:00.000Z",
+          "price": 0.06532687
+        },
+        {
+          "timestamp": "2024-02-24T15:02:00.000Z",
+          "price": 0.06534452
+        },
+        {
+          "timestamp": "2024-02-24T15:04:00.000Z",
+          "price": 0.06514105
+        },
+        {
+          "timestamp": "2024-02-24T15:08:00.000Z",
+          "price": 0.06526809
+        },
+        {
+          "timestamp": "2024-02-24T15:09:00.000Z",
+          "price": 0.0653497
+        },
+        {
+          "timestamp": "2024-02-24T15:10:00.000Z",
+          "price": 0.06549415
+        },
+        {
+          "timestamp": "2024-02-24T15:11:00.000Z",
+          "price": 0.06554241
+        },
+        {
+          "timestamp": "2024-02-24T15:12:00.000Z",
+          "price": 0.06560731
+        },
+        {
+          "timestamp": "2024-02-24T15:13:00.000Z",
+          "price": 0.0655978
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.06544924
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.06544924
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Terra",
+    "data": {
+      "current_price": 0.66511134,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-24T14:39:00.000Z",
+          "price": 0.66370274
+        },
+        {
+          "timestamp": "2024-02-24T14:40:00.000Z",
+          "price": 0.66363541
+        },
+        {
+          "timestamp": "2024-02-24T14:41:00.000Z",
+          "price": 0.663567
+        },
+        {
+          "timestamp": "2024-02-24T14:42:00.000Z",
+          "price": 0.66356822
+        },
+        {
+          "timestamp": "2024-02-24T14:50:00.000Z",
+          "price": 0.66056137
+        },
+        {
+          "timestamp": "2024-02-24T14:51:00.000Z",
+          "price": 0.66065448
+        },
+        {
+          "timestamp": "2024-02-24T14:52:00.000Z",
+          "price": 0.66076061
+        },
+        {
+          "timestamp": "2024-02-24T14:53:00.000Z",
+          "price": 0.66080778
+        },
+        {
+          "timestamp": "2024-02-24T14:54:00.000Z",
+          "price": 0.660978
+        },
+        {
+          "timestamp": "2024-02-24T14:55:00.000Z",
+          "price": 0.66151452
+        },
+        {
+          "timestamp": "2024-02-24T14:56:00.000Z",
+          "price": 0.66182944
+        },
+        {
+          "timestamp": "2024-02-24T14:57:00.000Z",
+          "price": 0.66188518
+        },
+        {
+          "timestamp": "2024-02-24T14:58:00.000Z",
+          "price": 0.66197121
+        },
+        {
+          "timestamp": "2024-02-24T14:59:00.000Z",
+          "price": 0.66200938
+        },
+        {
+          "timestamp": "2024-02-24T15:01:00.000Z",
+          "price": 0.66187673
+        },
+        {
+          "timestamp": "2024-02-24T15:01:00.000Z",
+          "price": 0.66187673
+        },
+        {
+          "timestamp": "2024-02-24T15:02:00.000Z",
+          "price": 0.66182912
+        },
+        {
+          "timestamp": "2024-02-24T15:04:00.000Z",
+          "price": 0.66223207
+        },
+        {
+          "timestamp": "2024-02-24T15:08:00.000Z",
+          "price": 0.66352476
+        },
+        {
+          "timestamp": "2024-02-24T15:09:00.000Z",
+          "price": 0.66345723
+        },
+        {
+          "timestamp": "2024-02-24T15:10:00.000Z",
+          "price": 0.66338732
+        },
+        {
+          "timestamp": "2024-02-24T15:11:00.000Z",
+          "price": 0.66326181
+        },
+        {
+          "timestamp": "2024-02-24T15:12:00.000Z",
+          "price": 0.66322813
+        },
+        {
+          "timestamp": "2024-02-24T15:13:00.000Z",
+          "price": 0.66303398
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.66511134
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.66511134
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Syscoin",
+    "data": {
+      "current_price": 0.14821375,
+      "timestamp_of_current_price": "2024-02-25T15:00:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.14837618
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.14837618
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.14837618
+        },
+        {
+          "timestamp": "2024-02-25T14:57:00.000Z",
+          "price": 0.14835468
+        },
+        {
+          "timestamp": "2024-02-25T14:59:00.000Z",
+          "price": 0.14831314
+        },
+        {
+          "timestamp": "2024-02-25T15:00:00.000Z",
+          "price": 0.14821375
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Lisk",
+    "data": {
+      "current_price": 1.37601805,
+      "timestamp_of_current_price": "2024-02-25T14:58:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 1.37836826
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 1.37836826
+        },
+        {
+          "timestamp": "2024-02-25T14:58:00.000Z",
+          "price": 1.37601805
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Komodo",
+    "data": {
+      "current_price": 0.31105998,
+      "timestamp_of_current_price": "2024-02-25T14:57:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.31105471
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.31105471
+        },
+        {
+          "timestamp": "2024-02-25T14:57:00.000Z",
+          "price": 0.31105998
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Aragon",
+    "data": {
+      "current_price": 7.79662847,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 7.79662847
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 7.79662847
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Qtum",
+    "data": {
+      "current_price": 3.4688735,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 3.4688735
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 3.4688735
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "xMoney",
+    "data": {
+      "current_price": 0.08163726,
+      "timestamp_of_current_price": "2024-02-25T14:56:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.08163726
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.08163726
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Theta Network",
+    "data": {
+      "current_price": 1.32757653,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 1.32757653
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 1.32757653
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Theta Fuel",
+    "data": {
+      "current_price": 0.04998729,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.04998729
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.04998729
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Reserve Rights",
+    "data": {
+      "current_price": 0.00313356,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.00313356
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.00313356
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Dusk",
+    "data": {
+      "current_price": 0.30002945,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.30002945
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.30002945
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "THORChain",
+    "data": {
+      "current_price": 5.39479756,
+      "timestamp_of_current_price": "2024-02-25T14:56:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 5.39479756
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 5.39479756
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Nervos Network",
+    "data": {
+      "current_price": 0.01429066,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.01429066
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.01429066
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Origin Protocol",
+    "data": {
+      "current_price": 0.175935,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.175935
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.175935
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Hive",
+    "data": {
+      "current_price": 0.34030023,
+      "timestamp_of_current_price": "2024-02-25T14:56:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.34030023
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.34030023
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Cartesi",
+    "data": {
+      "current_price": 0.35472591,
+      "timestamp_of_current_price": "2024-02-25T14:56:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.35472591
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.35472591
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Avalanche",
+    "data": {
+      "current_price": 37.18454131,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 37.18454131
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 37.18454131
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Curve DAO Token",
+    "data": {
+      "current_price": 0.60262125,
+      "timestamp_of_current_price": "2024-02-25T14:56:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.60262125
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.60262125
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "The Graph",
+    "data": {
+      "current_price": 0.28621871,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.28621871
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.28621871
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "MultiversX",
+    "data": {
+      "current_price": 57.32390285,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 57.32390285
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 57.32390285
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "DODO",
+    "data": {
+      "current_price": 0.19591106,
+      "timestamp_of_current_price": "2024-02-25T14:56:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.19591106
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.19591106
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Bonfida",
+    "data": {
+      "current_price": 0.3476841,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.3476841
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.3476841
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Internet Computer",
+    "data": {
+      "current_price": 12.51218979,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 12.51218979
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 12.51218979
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Pundi X (New)",
+    "data": {
+      "current_price": 0.45616305,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.45616305
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.45616305
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Alien Worlds",
+    "data": {
+      "current_price": 0.01930502,
+      "timestamp_of_current_price": "2024-02-25T14:55:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.01930502
+        },
+        {
+          "timestamp": "2024-02-25T14:55:00.000Z",
+          "price": 0.01930502
+        }
+      ]
+    }
+  },
+  {
+    "coin_name": "Ooki Protocol",
+    "data": {
+      "current_price": 0.00205076,
+      "timestamp_of_current_price": "2024-02-25T14:56:00.000Z",
+      "currency": "USD",
+      "price_history": [
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.00205076
+        },
+        {
+          "timestamp": "2024-02-25T14:56:00.000Z",
+          "price": 0.00205076
+        }
+      ]
+    }
+  }
+]

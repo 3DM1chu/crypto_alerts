@@ -1,0 +1,29 @@
+[
+   {
+      "coin_name":"EXAMPLE",
+      "symbol": "EXA",
+      "data":{
+         "current_price":0.0,
+         "timestamp_of_current_price": "2024-02-24T13:07:00.000Z",
+         "currency":"USD",
+         "price_history":[
+            {
+               "timestamp":"101010",
+               "price":0.044
+            }
+         ]
+      }
+   },
+   {
+      "coin_name":"Atletico De Madrid Fan Token",
+      "symbol": "ATM",
+      "data":{
+         "current_price":0.0,
+         "currency":"USD",
+         "timestamp_of_current_price": "2024-02-24T13:07:00.000Z",
+         "price_history":[
+
+         ]
+      }
+   }
+]
