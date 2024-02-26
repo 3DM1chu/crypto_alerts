@@ -213,7 +213,7 @@ def on_close(ws: WebSocketApp, close_status_code, close_msg):
 
 
 def on_open(ws: WebSocketApp):
-    print("Opened connection")
+    print("Connecting to binance websocket...")
     obj = {
         "method": "SUBSCRIBE",
         "params": [],
@@ -222,7 +222,9 @@ def on_open(ws: WebSocketApp):
     for coin in coins:
         symbol = str(coin["symbol"]).lower()
         obj["params"].append(f"{symbol}usdt@aggTrade")
+    print("Setupping coins to subscribe...")
     ws.send(json.dumps(obj))
+    print("Sent coins to subscribe...")
 
 
 # socket = 'wss://stream.binance.com:9443/ws/ckbusdt@kline_1s'
