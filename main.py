@@ -198,10 +198,10 @@ def on_message(ws: WebSocketApp, message):
         time_difference = datetime_obj - token.getCurrentPriceDatetime()
 
         if (time_difference >= timedelta(milliseconds=100) or first_time) and not price_change_too_low:
-            print(f"{trading_pair} at {current_price}")
+            #print(f"{trading_pair} at {current_price}")
             token.addPriceEntry(current_price, datetime_obj)
-    else:
-        print(message)
+    #else:
+        #rint(message)
 
 
 def on_error(ws: WebSocketApp, error):
