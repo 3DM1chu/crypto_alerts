@@ -63,9 +63,14 @@ def checkIfPriceWasATHorATL(data: [], current_price):
 
 
 # 1 interval = 15s
-def checkIfPriceWentUp(coin_name: str, coin_symbol: str, intervals: int, min_price_change_percent: float):
+def checkIfPriceWentUp(coin_name: str, coin_symbol: str, old_price: float,
+                       intervals: int, min_price_change_percent: float):
     id = getIndexOfCoin(coin_name)
     current_price = prices[id]["data"]["current_price"]
+
+    if current_price == old_price:
+        return
+
     if len(prices[id]["data"]["price_history"]) > intervals + 1:
         id_of_historical_price = -1 * intervals
         historic_price = prices[id]["data"]["price_history"][-1 * intervals]["price"]
@@ -116,11 +121,12 @@ def checkIfPriceWentUp(coin_name: str, coin_symbol: str, intervals: int, min_pri
 # add saving to file
 def addPriceHistory(coin_name: str, coin_symbol: str, date_to_add: str, price_to_add: float):
     id = getIndexOfCoin(coin_name)
+    old_price = prices[id]["data"]["current_price"]
     prices[id]["data"]["current_price"] = price_to_add
     prices[id]["data"]["timestamp_of_current_price"] = date_to_add
     prices[id]["data"]["price_history"].append({"timestamp": date_to_add, "price": price_to_add})
     open("prices.json", "w").write(json.dumps(prices, indent=2))
-    checkIfPriceWentUp(coin_name, coin_symbol, intervals=INTERVALS, min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
+    checkIfPriceWentUp(coin_name, coin_symbol, old_price, intervals=INTERVALS, min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
 
 
 def sendTelegramNotification(notification: str):
