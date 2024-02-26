@@ -192,13 +192,13 @@ def on_message(ws: WebSocketApp, message):
         if first_time is False and price_change < MINIMUM_PRICE_CHANGE_TO_SAVE_ENTRY:
             price_change_too_low = True
 
-        timestamp_unix = int(message_json["E"])
-        timestamp_seconds = int(timestamp_unix / 1000.0)
-        datetime_obj = datetime.fromtimestamp(timestamp_seconds)
-        time_difference = datetime_obj - token.getCurrentPriceDatetime()
+        #timestamp_unix = int(message_json["E"])
+        #timestamp_seconds = int(timestamp_unix / 1000.0)
+        #datetime_obj = datetime.fromtimestamp(timestamp_seconds)
+        #time_difference = datetime_obj - token.getCurrentPriceDatetime()
 
-        if (time_difference >= timedelta(milliseconds=100) or first_time) and not price_change_too_low:
-            #print(f"{trading_pair} at {current_price}")
+        if not price_change_too_low:
+            print(f"{trading_pair} at {current_price}")
             token.addPriceEntry(current_price, datetime_obj)
     #else:
         #rint(message)
@@ -221,7 +221,8 @@ def on_open(ws: WebSocketApp):
     }
     for coin in coins:
         symbol = str(coin["symbol"]).lower()
-        obj["params"].append(f"{symbol}usdt@aggTrade")
+        #obj["params"].append(f"{symbol}usdt@aggTrade")
+    obj["params"].append("akrousdt@aggTrade")
     print("Setupping coins to subscribe...")
     ws.send(json.dumps(obj))
     print("Sent coins to subscribe...")
