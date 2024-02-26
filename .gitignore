@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 /prices.json
 /coins.json
+/.env_v1
