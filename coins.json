@@ -122,5 +122,37 @@
    {
       "name":"SYS",
       "id":541
+   },
+   {
+      "name":"ETX",
+      "id":27446
+   },
+   {
+      "name":"DEXE",
+      "id":7326
+   },
+   {
+      "name":"CTK",
+      "id":4807
+   },
+   {
+      "name":"ALCX",
+      "id":8613
+   },
+   {
+      "name":"HARD",
+      "id":7576
+   },
+   {
+      "name":"MTL",
+      "id":1788
+   },
+   {
+      "name":"SXP",
+      "id":4279
+   },
+   {
+      "name":"AKRO",
+      "id":4134
    }
 ]
