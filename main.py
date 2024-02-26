@@ -219,8 +219,7 @@ def on_open(ws: WebSocketApp):
     }
     for coin in coins:
         symbol = str(coin["symbol"]).lower()
-        #obj["params"].append(f"{symbol}usdt@aggTrade")
-    obj["params"].append("akrousdt@aggTrade")
+        obj["params"].append(f"{symbol}usdt@aggTrade")
     print("Setupping coins to subscribe...")
     ws.send(json.dumps(obj))
     print("Sent coins to subscribe...")
