@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from time import sleep
 import requests
 import websocket
 from rel import rel
@@ -11,12 +10,12 @@ from websocket import WebSocketApp
 # VERSION 2 - BINANCE API
 TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID")
+MINIMUM_PRICE_CHANGE_TO_ALERT_15M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_15M"))
 MINIMUM_PRICE_CHANGE_TO_ALERT_1H = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_1H"))
-#MINIMUM_PRICE_CHANGE_TO_ALERT_15M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_15M"))
+MINIMUM_PRICE_CHANGE_TO_ALERT_4H = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_4H"))
+MINIMUM_PRICE_CHANGE_TO_ALERT_8H = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_8H"))
+MINIMUM_PRICE_CHANGE_TO_ALERT_24H = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_24H"))
 MINIMUM_PRICE_CHANGE_TO_SAVE_ENTRY = float(config("MINIMUM_PRICE_CHANGE_TO_SAVE_ENTRY"))
-
-INTERVALS_1H = 60
-INTERVALS_15M = 15
 
 
 class PriceEntry:
@@ -43,14 +42,16 @@ class Token:
 
     def addPriceEntry(self, price: float, _timestamp: datetime):
         self.price_history.append(PriceEntry(price=price, timestamp=_timestamp))
-        self.checkIfPriceChanged(time_frame={"hours": 1},
-                                min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
-        self.checkIfPriceChanged(time_frame={"hours": 4},
-                                min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
-        self.checkIfPriceChanged(time_frame={"hours": 8},
-                                min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
         self.checkIfPriceChanged(time_frame={"minutes": 15},
-                                min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
+                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_15M)
+        self.checkIfPriceChanged(time_frame={"hours": 1},
+                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
+        self.checkIfPriceChanged(time_frame={"hours": 4},
+                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_4H)
+        self.checkIfPriceChanged(time_frame={"hours": 8},
+                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_8H)
+        self.checkIfPriceChanged(time_frame={"hours": 24},
+                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_24H)
         saveTokensHistoryToFIle()
 
     def getNearestPriceEntryToTimeframe(self, time_frame):
@@ -223,9 +224,6 @@ def on_message(ws, message):
         timestamp_unix = int(message_json["E"])
         timestamp_seconds = int(timestamp_unix / 1000.0)
         datetime_obj = datetime.fromtimestamp(timestamp_seconds)
-        # time_difference = datetime_obj - token.getCurrentPriceDatetime()
-
-        #print(f"{trading_pair} at {current_price}, time: {datetime_obj.strftime('%Y-%m-%d %H:%M:%S')}")
         if not price_change_too_low:
             # print(f"{trading_pair} at {current_price}")
             token.addPriceEntry(current_price, datetime_obj)
