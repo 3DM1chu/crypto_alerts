@@ -148,5 +148,23 @@
    },
    {
       "symbol":"EPX"
+   },
+   {
+      "symbol":"WIN"
+   },
+   {
+      "symbol":"BLZ"
+   },
+   {
+      "symbol":"BAR"
+   },
+   {
+      "symbol":"CITY"
+   },
+   {
+      "symbol":"ALPINE"
+   },
+   {
+      "symbol":"KNC"
    }
 ]
