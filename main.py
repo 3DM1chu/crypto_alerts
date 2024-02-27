@@ -10,6 +10,7 @@ from websocket import WebSocketApp
 # VERSION 2 - BINANCE API
 TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID")
+MINIMUM_PRICE_CHANGE_TO_ALERT_5M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_5M"))
 MINIMUM_PRICE_CHANGE_TO_ALERT_15M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_15M"))
 MINIMUM_PRICE_CHANGE_TO_ALERT_1H = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_1H"))
 MINIMUM_PRICE_CHANGE_TO_ALERT_4H = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_4H"))
@@ -42,6 +43,8 @@ class Token:
 
     def addPriceEntry(self, price: float, _timestamp: datetime):
         self.price_history.append(PriceEntry(price=price, timestamp=_timestamp))
+        self.checkIfPriceChanged(time_frame={"minutes": 5},
+                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_5M)
         self.checkIfPriceChanged(time_frame={"minutes": 15},
                                  min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_15M)
         self.checkIfPriceChanged(time_frame={"hours": 1},
