@@ -122,6 +122,7 @@ class Token:
                             f"{self.symbol}\n"
                             f"📉{price_change}%\n"
                             f"{self.getCurrentPrice()}$\n"
+                            f"timeframe: {time_frame}"
                             f"since {historic_price_timestamp}\n"
                             f"======================")
             if price_change >= min_price_change_percent:
