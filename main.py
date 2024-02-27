@@ -57,6 +57,10 @@ class Token:
                                  min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_8H)
         self.checkIfPriceChanged(time_frame={"hours": 24},
                                  min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_24H)
+        self.checkIfPriceChanged(time_frame={"days": 7},
+                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_24H)
+        self.checkIfPriceChanged(time_frame={"days": 30},
+                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_24H)
         saveTokensHistoryToFIle()
 
     def getNearestPriceEntryToTimeframe(self, time_frame):
