@@ -42,9 +42,14 @@ class Token:
         return self.price_history[-1].timestamp
 
     def addPriceEntry(self, price: float, _timestamp: datetime):
-        old_price = self.getCurrentPrice()
         self.price_history.append(PriceEntry(price=price, timestamp=_timestamp))
-        self.checkIfPriceWentUp(old_price, time_frame={"hours": 1},
+        self.checkIfPriceChanged(time_frame={"hours": 1},
+                                min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
+        self.checkIfPriceChanged(time_frame={"hours": 4},
+                                min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
+        self.checkIfPriceChanged(time_frame={"hours": 8},
+                                min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
+        self.checkIfPriceChanged(time_frame={"minutes": 15},
                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
         saveTokensHistoryToFIle()
 
@@ -74,52 +79,34 @@ class Token:
 
         return closest_entry
 
-        # Print the closest entry and its difference
-        #if closest_entry:
-            #print(f"Closest entry to {time_frame} difference:", closest_entry.price)
-           # print("Difference:", closest_difference)
-        #else:
-         #   print("No entries found.")
-
-    def checkIfPriceWentUp(self, old_price: float, time_frame, min_price_change_percent: float):
-        if self.getCurrentPrice() == old_price:
-            return
-
-        #historic_price_obj = self.getNearestPriceEntryToTimeframe(time_frame={"hours": 1})
-        historic_price_obj = self.getNearestPriceEntryToTimeframe(time_frame=time_frame)
+    def checkIfPriceChanged(self, time_frame, min_price_change_percent: float):
+        historic_price_obj = self.getNearestPriceEntryToTimeframe(time_frame)
         historic_price = historic_price_obj.price
         historic_price_timestamp = historic_price_obj.timestamp
 
-        #if len(self.price_history) > intervals + 1:
-        #    id_of_historical_price = -1 * intervals
-        #    historic_price = self.price_history[-1 * intervals].price
-        #else:
-        #    id_of_historical_price = 0
-        #    historic_price = self.price_history[0].price
-
-        ATH_ATL_1H = self.checkIfPriceWasATHorATL()
-        wasATH_1H = ATH_ATL_1H["wasATH"]
-        wasATL_1H = ATH_ATL_1H["wasATL"]
-        if self.getCurrentPrice() > historic_price and wasATH_1H:
+        ATH_ATL = self.checkIfPriceWasATHorATL(time_frame)
+        wasATH = ATH_ATL["wasATH"]
+        wasATL = ATH_ATL["wasATL"]
+        if self.getCurrentPrice() > historic_price and wasATH:
             price_change = (self.getCurrentPrice() / historic_price * 100) - 100
             price_change = float("{:.3f}".format(price_change))
             notification = (f"======================\n"
                             f"{self.symbol}\n"
                             f"💹{price_change}%\n"
                             f"{self.getCurrentPrice()}$\n"
-                            f"ATH in last hour\n"
+                            f"ATH in {time_frame}\n"
                             f"since {historic_price_timestamp}\n"
                             f"======================")
             if price_change >= min_price_change_percent:
                 sendTelegramNotification(notification)
-        elif self.getCurrentPrice() < historic_price and wasATL_1H:
+        elif self.getCurrentPrice() < historic_price and wasATL:
             price_change = 100 - (self.getCurrentPrice() / historic_price * 100)
             price_change = float("{:.3f}".format(price_change))
             notification = (f"======================\n"
                             f"{self.symbol}\n"
                             f"📉{price_change}%\n"
                             f"{self.getCurrentPrice()}$\n"
-                            f"ATL in last hour\n"
+                            f"ATL in {time_frame}\n"
                             f"since {historic_price_timestamp}\n"
                             f"======================")
             if price_change >= min_price_change_percent:
@@ -136,9 +123,9 @@ class Token:
             if price_change >= min_price_change_percent:
                 print(notification)
 
-    def checkIfPriceWasATHorATL(self):
+    def checkIfPriceWasATHorATL(self, time_delta):
         # Define the time threshold (1 hour)
-        time_threshold = timedelta(hours=1)
+        time_threshold = timedelta(**time_delta)
 
         result = {
             "wasATH": True,
