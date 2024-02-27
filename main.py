@@ -43,9 +43,8 @@ class Token:
 
     def addPriceEntry(self, price: float, _timestamp: datetime):
         old_price = self.getCurrentPrice()
-        self.getNearestPriceEntryToTimeframe(time_frame={"hours": 1})
         self.price_history.append(PriceEntry(price=price, timestamp=_timestamp))
-        self.checkIfPriceWentUp(old_price, intervals=INTERVALS_1H,
+        self.checkIfPriceWentUp(old_price, time_frame={"hours": 1},
                                 min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_1H)
         saveTokensHistoryToFIle()
 
@@ -57,36 +56,46 @@ class Token:
         closest_entry = None
         closest_difference = timedelta.max  # Initialize with a large value
 
-        # Define a timedelta object for 1 hour
-        one_hour = timedelta(**time_frame)
+        # Define the timedelta object
+        time_delta = timedelta(**time_frame)
+
+        # Get the reference time by subtracting the time delta from the current datetime
+        reference_time = current_datetime - time_delta
 
         # Iterate through each entry in price history
         for entry in self.price_history:
             # Calculate the difference between the timestamp and the current time
-            time_difference = abs(entry.timestamp - current_datetime)
+            time_difference = abs(entry.timestamp - reference_time)
 
-            # Check if the difference is within the 1-hour range and closer than the current closest difference
-            if abs(time_difference - one_hour) < abs(closest_difference - one_hour):
+            # Check if the current entry is closer than the current closest entry
+            if time_difference < closest_difference:
                 closest_entry = entry
                 closest_difference = time_difference
 
-        # Print the closest entry and its difference
-        if closest_entry:
-            print(f"Closest entry to {time_frame} difference:", closest_entry)
-            print("Difference:", closest_difference)
-        else:
-            print("No entries found.")
+        return closest_entry
 
-    def checkIfPriceWentUp(self, old_price: float, intervals: int, min_price_change_percent: float):
+        # Print the closest entry and its difference
+        #if closest_entry:
+            #print(f"Closest entry to {time_frame} difference:", closest_entry.price)
+           # print("Difference:", closest_difference)
+        #else:
+         #   print("No entries found.")
+
+    def checkIfPriceWentUp(self, old_price: float, time_frame, min_price_change_percent: float):
         if self.getCurrentPrice() == old_price:
             return
 
-        if len(self.price_history) > intervals + 1:
-            id_of_historical_price = -1 * intervals
-            historic_price = self.price_history[-1 * intervals].price
-        else:
-            id_of_historical_price = 0
-            historic_price = self.price_history[0].price
+        #historic_price_obj = self.getNearestPriceEntryToTimeframe(time_frame={"hours": 1})
+        historic_price_obj = self.getNearestPriceEntryToTimeframe(time_frame=time_frame)
+        historic_price = historic_price_obj.price
+        historic_price_timestamp = historic_price_obj.timestamp
+
+        #if len(self.price_history) > intervals + 1:
+        #    id_of_historical_price = -1 * intervals
+        #    historic_price = self.price_history[-1 * intervals].price
+        #else:
+        #    id_of_historical_price = 0
+        #    historic_price = self.price_history[0].price
 
         ATH_ATL_1H = self.checkIfPriceWasATHorATL()
         wasATH_1H = ATH_ATL_1H["wasATH"]
@@ -99,7 +108,7 @@ class Token:
                             f"💹{price_change}%\n"
                             f"{self.getCurrentPrice()}$\n"
                             f"ATH in last hour\n"
-                            f"since {self.price_history[id_of_historical_price].timestamp}\n"
+                            f"since {historic_price_timestamp}\n"
                             f"======================")
             if price_change >= min_price_change_percent:
                 sendTelegramNotification(notification)
@@ -111,7 +120,7 @@ class Token:
                             f"📉{price_change}%\n"
                             f"{self.getCurrentPrice()}$\n"
                             f"ATL in last hour\n"
-                            f"since {self.price_history[id_of_historical_price].timestamp}\n"
+                            f"since {historic_price_timestamp}\n"
                             f"======================")
             if price_change >= min_price_change_percent:
                 sendTelegramNotification(notification)
@@ -122,7 +131,7 @@ class Token:
                             f"{self.symbol}\n"
                             f"📉{price_change}%\n"
                             f"{self.getCurrentPrice()}$\n"
-                            f"since {self.price_history[id_of_historical_price].timestamp}\n"
+                            f"since {historic_price_timestamp}\n"
                             f"======================")
             if price_change >= min_price_change_percent:
                 print(notification)
@@ -177,16 +186,22 @@ def loadTokensHistoryFromFile():
 
 def saveTokensHistoryToFIle():
     tokens_json = []
+    tokens_symbols = []
     for token in tokens:
         token_json = {
             "symbol": token.symbol,
             "currency": token.currency,
             "price_history": []
         }
+        token_already_existing = True
         for price_entry in token.price_history:
-            token_json["price_history"].append({"price": price_entry.price,
-                                                "timestamp": price_entry.timestamp.strftime('%Y-%m-%d %H:%M:%S')})
-        tokens_json.append(token_json)
+            if token.symbol not in tokens_symbols or len(token.price_history) != 0:
+                token_already_existing = False
+                token_json["price_history"].append({"price": price_entry.price,
+                                                    "timestamp": price_entry.timestamp.strftime('%Y-%m-%d %H:%M:%S')})
+                tokens_symbols.append(token.symbol)
+        if not token_already_existing:
+            tokens_json.append(token_json)
     open("prices.json", "w").write(json.dumps(tokens_json, indent=4))
 
 

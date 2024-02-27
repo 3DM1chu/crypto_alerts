@@ -108,6 +108,9 @@
       "symbol":"HARD"
    },
    {
+      "symbol":"DENT"
+   },
+   {
       "symbol":"MTL"
    },
    {
@@ -115,5 +118,32 @@
    },
    {
       "symbol":"AKRO"
+   },
+   {
+      "symbol":"POWR"
+   },
+   {
+      "symbol":"SC"
+   },
+   {
+      "symbol":"LOOM"
+   },
+   {
+      "symbol":"LOKA"
+   },
+   {
+      "symbol":"AST"
+   },
+   {
+      "symbol":"ALPHA"
+   },
+   {
+      "symbol":"BTC"
+   },
+   {
+      "symbol":"ETH"
+   },
+   {
+      "symbol":"BNB"
    }
 ]
