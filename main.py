@@ -238,6 +238,7 @@ def on_message(ws, message):
         datetime_obj = datetime.fromtimestamp(timestamp_seconds)
         # time_difference = datetime_obj - token.getCurrentPriceDatetime()
 
+        print(f"{trading_pair} at {current_price}")
         if not price_change_too_low:
             # print(f"{trading_pair} at {current_price}")
             token.addPriceEntry(current_price, datetime_obj)
