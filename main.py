@@ -247,7 +247,7 @@ def on_open(ws):
         "id": 1
     }
     for coin in coins:
-        obj["params"].append(f"{str(coin['symbol']).lower()}usdt@aggTrade")
+        obj["params"].append(f"{str(coin['symbol']).lower()}usdt@trade")
     print("Setupping coins to subscribe...")
     ws.send(json.dumps(obj))
     print("Sent coins to subscribe...")
