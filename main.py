@@ -224,19 +224,11 @@ def on_message(ws, message):
         current_price = float(message_json["p"])
         token = tokens[getIndexOfCoin(coin_symbol)]
 
-        first_time = len(token.price_history) == 0
-        price_change_too_low = False
-        price_change = abs(100 - (token.getCurrentPrice() / current_price * 100))
-
-        if first_time is False and price_change < MINIMUM_PRICE_CHANGE_TO_SAVE_ENTRY:
-            price_change_too_low = True
-
         timestamp_unix = int(message_json["E"])
         timestamp_seconds = int(timestamp_unix / 1000.0)
         datetime_obj = datetime.fromtimestamp(timestamp_seconds)
-        if not price_change_too_low:
-            # print(f"{trading_pair} at {current_price}")
-            token.addPriceEntry(current_price, datetime_obj)
+        # print(f"{trading_pair} at {current_price}")
+        token.addPriceEntry(current_price, datetime_obj)
 
 
 def on_error(ws, error):
