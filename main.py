@@ -254,7 +254,7 @@ async def fetch_coin_price(session, coin, semaphore):
             print(f"{coin_data}")
     except:
         x = "err"
-        prinr(x)
+        print(x)
     semaphore.release()
 
 
