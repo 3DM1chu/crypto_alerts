@@ -249,13 +249,13 @@ async def fetch_coin_price(session, coin, semaphore):
     try:
         async with session.get(random.choice(urls)) as resp:
             data = await resp.text()
-            print(data)
+            #print(data)
             data = json.loads(data)
             coin_data = data[0]
             current_price = float(coin_data[4])
             token = tokens[getIndexOfCoin(coin["symbol"])]
             token.addPriceEntry(current_price, datetime.now())
-            #print(f"{coin_data}")
+            print(f"{coin_data}")
     except:
         x = "err"
         print(x)
