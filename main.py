@@ -246,16 +246,16 @@ async def fetch_coin_price(session, coin, semaphore):
         f"https://api.binance.com/api/v3/uiKlines?symbol={coin['symbol']}USDT&interval=1m&limit=1"
     ]
     #print("starting checking " + coin['symbol'])
-    try:
-        async with session.get(random.choice(urls)) as resp:
-            data = await resp.json()
-            coin_data = data[0]
-            current_price = float(coin_data[4])
-            token = tokens[getIndexOfCoin(coin["symbol"])]
-            token.addPriceEntry(current_price, datetime.now())
-            #print(f"{coin_data}")
-    except:
-        x = "err"
+    #try:
+    async with session.get(random.choice(urls)) as resp:
+        data = await resp.json()
+        coin_data = data[0]
+        current_price = float(coin_data[4])
+        token = tokens[getIndexOfCoin(coin["symbol"])]
+        token.addPriceEntry(current_price, datetime.now())
+        #print(f"{coin_data}")
+    #except:
+        #x = "err"
         #print(x)
     semaphore.release()
 
