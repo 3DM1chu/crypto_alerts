@@ -173,7 +173,9 @@ def loadCoinsToFetchFromFile():
 
 def loadTokensHistoryFromFile():
     if not os.path.exists("prices.json"):
-        open("prices.json", 'w').close()
+        file = open("prices.json", 'w')
+        file.write("[]")
+        file.close()
     _tokens: [] = json.loads(open("prices.json", "r").read())
     tokens_to_return: List[Token] = []
     for token_from_file in _tokens:
