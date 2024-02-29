@@ -5,3 +5,4 @@ websocket-client
 rel
 websocket
 decouple
+aiohttp

@@ -1,14 +1,13 @@
-import asyncio
-import random
 from datetime import datetime, timedelta
-
 import requests
+import websocket
+from rel import rel
 import json
 from decouple import config
 from typing import List
-import aiohttp
+from websocket import WebSocketApp
 
-# VERSION 3 - BINANCE REST API
+# VERSION 3 - BINANCE WEBSOCKETS API
 TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
 TELEGRAM_CHAT_ID = config("TELEGRAM_CHAT_ID")
 MINIMUM_PRICE_CHANGE_TO_ALERT_5M = float(config("MINIMUM_PRICE_CHANGE_TO_ALERT_5M"))
@@ -214,54 +213,68 @@ def getIndexOfCoin(coin_symbol: str):
     return -1
 
 
-async def fetch_coin_price(session, coin, semaphore):
-    await semaphore.acquire()
-    example_output = """
-            [
-          [
-            1499040000000,      // Kline open time
-            "0.01634790",       // Open price
-            "0.80000000",       // High price
-            "0.01575800",       // Low price
-            "0.01577100",       // Close price
-            "148976.11427815",  // Volume
-            1499644799999,      // Kline close time
-            "2434.19055334",    // Quote asset volume
-            308,                // Number of trades
-            "1756.87402397",    // Taker buy base asset volume
-            "28.46694368",      // Taker buy quote asset volume
-            "0"                 // Unused field. Ignore.
-          ]
-        ]
-    """
-    urls = [
-        f"https://pexljc3fiphfkworlrtv52mi2q0cqhke.lambda-url.eu-central-1.on.aws/?coin={coin['symbol']}USDT",
-        f"https://s4vvdyc4oetj7pvktxl4o2e2ce0fynok.lambda-url.eu-central-1.on.aws/?coin={coin['symbol']}USDT"
-    ]
-    try:
-        async with session.get(random.choice(urls)) as resp:
-            data = await resp.json()
-            coin_data = data[0]
-            current_price = float(coin_data[4])
-            token = tokens[getIndexOfCoin(coin["symbol"])]
-            token.addPriceEntry(current_price, datetime.now())
-            print(f"{coin_data}")
-    except:
-        print("ok, skip")
-    semaphore.release()
+tokens: List[Token] = loadTokensHistoryFromFile()
+coins = loadCoinsToFetchFromFile()
 
 
-async def fetch_all_coin_prices(coins):
-    semaphore = asyncio.Semaphore(10)  # Limiting to 10 concurrent requests
-    async with aiohttp.ClientSession() as session:
-        while True:  # Run indefinitely
-            async with semaphore:
-                tasks = [fetch_coin_price(session, coin, semaphore) for coin in coins]
-                await asyncio.gather(*tasks)
-            await asyncio.sleep(0.1)
+def on_message(ws, message):
+    message_json = json.loads(message)
+    if len(message_json) > 5:
+        # print(f"{ws.cookie} | {message_json}")
+        trading_pair = message_json["s"]
+        coin_symbol = trading_pair.split("USDT")[0]
+        print(message_json)
+        current_price = float(message_json["p"])
+        token = tokens[getIndexOfCoin(coin_symbol)]
 
+        timestamp_unix = int(message_json["E"])
+        timestamp_seconds = int(timestamp_unix / 1000.0)
+        datetime_obj = datetime.fromtimestamp(timestamp_seconds)
+        # print(f"{trading_pair} at {current_price}")
+        token.addPriceEntry(current_price, datetime_obj)
+
+
+def on_error(ws, error):
+    print(error)
+
+
+def on_close(ws, close_status_code, close_msg):
+    print("### closed ###")
+
+
+def on_open(ws):
+    coins_to_check = ws.cookie.split("|")
+    print("Connecting to binance websocket...")
+    obj = {
+        "method": "SUBSCRIBE",
+        "params": [],
+        "id": 1
+    }
+    for coin in coins_to_check:
+        obj["params"].append(coin)
+    print(f"Setupping coins to subscribe... {obj['params']}")
+    ws.send(json.dumps(obj))
+    print("Sent coins to subscribe...")
+
+
+socket = 'wss://stream.binance.com:9443/ws'
 
 if __name__ == "__main__":
-    tokens: List[Token] = loadTokensHistoryFromFile()
-    coins = loadCoinsToFetchFromFile()
-    asyncio.run(fetch_all_coin_prices(coins))
+    websocket.enableTrace(False)
+    chunk_size = len(coins)
+
+    for i in range(0, len(coins), chunk_size):
+        chunk = coins[i:i + chunk_size]
+        coins_to_add = ""
+        for coin in chunk:
+            coins_to_add += f"{str(coin['symbol']).lower()}usdt@aggTrade|"
+        ws = WebSocketApp(socket,  # "wss://api.gemini.com/v1/marketdata/BTCUSD",
+                          cookie=coins_to_add[:-1],
+                          on_open=on_open,
+                          on_message=on_message,
+                          on_error=on_error,
+                          on_close=on_close)
+        ws.run_forever(dispatcher=rel,
+                       reconnect=5)
+    rel.signal(2, rel.abort)  # Keyboard Interrupt
+    rel.dispatch()
