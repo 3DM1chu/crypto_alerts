@@ -4,5 +4,5 @@ pytz
 websocket-client
 rel
 websocket
-decouple
+python-decouple
 aiohttp

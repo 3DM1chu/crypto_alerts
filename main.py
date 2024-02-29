@@ -253,7 +253,7 @@ async def fetch_coin_price(session, coin, semaphore):
 
 
 async def fetch_all_coin_prices(coins):
-    semaphore = asyncio.Semaphore(3)  # Limiting to 10 concurrent requests
+    semaphore = asyncio.Semaphore(10)  # Limiting to 10 concurrent requests
     async with aiohttp.ClientSession() as session:
         while True:  # Run indefinitely
             async with semaphore:
