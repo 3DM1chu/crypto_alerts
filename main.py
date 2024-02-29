@@ -244,6 +244,7 @@ async def fetch_coin_price(session, coin, semaphore):
         f"https://pexljc3fiphfkworlrtv52mi2q0cqhke.lambda-url.eu-central-1.on.aws/?coin={coin['symbol']}USDT",
         f"https://api.binance.com/api/v3/uiKlines?symbol={coin['symbol']}USDT&interval=1m&limit=1"
     ]
+    print("starting checking " + coin['symbol'])
     try:
         async with session.get(random.choice(urls)) as resp:
             data = await resp.json()
