@@ -245,7 +245,7 @@ async def fetch_coin_price(session, coin, semaphore):
             current_price = float(coin_data[4])
             token = tokens[getIndexOfCoin(coin["symbol"])]
             token.addPriceEntry(current_price, datetime.now())
-            print(f"{coin_data}")
+            #print(f"{coin_data}")
     except:
         print("ok, skip")
     semaphore.release()
