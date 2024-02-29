@@ -272,7 +272,7 @@ async def fetch_all_coin_prices(coins):
 def save_to_file():
     threading.Timer(60.0, save_to_file).start()  # Run every 30 seconds
     saveTokensHistoryToFIle()
-    print("Data saved to file.")
+    print(f"Data saved to file at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 
 if __name__ == "__main__":
