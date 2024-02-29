@@ -259,7 +259,6 @@ async def fetch_all_coin_prices(coins):
             async with semaphore:
                 tasks = [fetch_coin_price(session, coin, semaphore) for coin in coins]
                 await asyncio.gather(*tasks)
-            await asyncio.sleep(0.1)
 
 
 if __name__ == "__main__":
