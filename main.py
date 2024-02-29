@@ -245,7 +245,7 @@ async def fetch_coin_price(session, coin, semaphore):
         f"https://pexljc3fiphfkworlrtv52mi2q0cqhke.lambda-url.eu-central-1.on.aws/?coin={coin['symbol']}USDT",
         f"https://api.binance.com/api/v3/uiKlines?symbol={coin['symbol']}USDT&interval=1m&limit=1"
     ]
-    print("starting checking " + coin['symbol'])
+    #print("starting checking " + coin['symbol'])
     try:
         async with session.get(random.choice(urls)) as resp:
             data = await resp.json()
@@ -253,15 +253,15 @@ async def fetch_coin_price(session, coin, semaphore):
             current_price = float(coin_data[4])
             token = tokens[getIndexOfCoin(coin["symbol"])]
             token.addPriceEntry(current_price, datetime.now())
-            print(f"{coin_data}")
+            #print(f"{coin_data}")
     except:
         x = "err"
-        print(x)
+        #print(x)
     semaphore.release()
 
 
 async def fetch_all_coin_prices(coins):
-    semaphore = asyncio.Semaphore(5)  # Limiting to 10 concurrent requests
+    semaphore = asyncio.Semaphore(15)  # Limiting to 10 concurrent requests
     async with aiohttp.ClientSession() as session:
         while True:  # Run indefinitely
             async with semaphore:
@@ -270,7 +270,7 @@ async def fetch_all_coin_prices(coins):
 
 
 def save_to_file():
-    threading.Timer(30.0, save_to_file).start()  # Run every 30 seconds
+    threading.Timer(60.0, save_to_file).start()  # Run every 30 seconds
     saveTokensHistoryToFIle()
     print("Data saved to file.")
 
