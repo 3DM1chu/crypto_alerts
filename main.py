@@ -242,7 +242,7 @@ async def fetch_coin_price(session, coin, semaphore):
     """
     urls = [
         f"https://pexljc3fiphfkworlrtv52mi2q0cqhke.lambda-url.eu-central-1.on.aws/?coin={coin['symbol']}USDT",
-        f"https://s4vvdyc4oetj7pvktxl4o2e2ce0fynok.lambda-url.eu-central-1.on.aws/?coin={coin['symbol']}USDT"
+        f"https://api.binance.com/api/v3/uiKlines?symbol={coin['symbol']}USDT&interval=1m&limit=1"
     ]
     try:
         async with session.get(random.choice(urls)) as resp:
@@ -258,7 +258,7 @@ async def fetch_coin_price(session, coin, semaphore):
 
 
 async def fetch_all_coin_prices(coins):
-    semaphore = asyncio.Semaphore(10)  # Limiting to 10 concurrent requests
+    semaphore = asyncio.Semaphore(18)  # Limiting to 10 concurrent requests
     async with aiohttp.ClientSession() as session:
         while True:  # Run indefinitely
             async with semaphore:
