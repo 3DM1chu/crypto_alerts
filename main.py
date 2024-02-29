@@ -1,4 +1,5 @@
 import asyncio
+import os
 import random
 from datetime import datetime, timedelta
 
@@ -171,6 +172,8 @@ def loadCoinsToFetchFromFile():
 
 
 def loadTokensHistoryFromFile():
+    if not os.path.exists("prices.json"):
+        open("prices.json", 'w').close()
     _tokens: [] = json.loads(open("prices.json", "r").read())
     tokens_to_return: List[Token] = []
     for token_from_file in _tokens:
