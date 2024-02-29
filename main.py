@@ -1,6 +1,7 @@
 import asyncio
 import os
 import random
+import threading
 from datetime import datetime, timedelta
 
 import requests
@@ -65,7 +66,7 @@ class Token:
                                  min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_24H)
         self.checkIfPriceChanged(time_frame={"days": 30},
                                  min_price_change_percent=MINIMUM_PRICE_CHANGE_TO_ALERT_24H)
-        saveTokensHistoryToFIle()
+        #saveTokensHistoryToFIle()
 
     def getNearestPriceEntryToTimeframe(self, time_frame):
         # Parse current datetime
@@ -268,9 +269,16 @@ async def fetch_all_coin_prices(coins):
                 await asyncio.gather(*tasks)
 
 
+def save_to_file():
+    threading.Timer(30.0, save_to_file).start()  # Run every 30 seconds
+    saveTokensHistoryToFIle()
+    print("Data saved to file.")
+
+
 if __name__ == "__main__":
     tokens: List[Token] = loadTokensHistoryFromFile()
     coins = loadCoinsToFetchFromFile()
+    save_to_file()
     asyncio.run(fetch_all_coin_prices(coins))
     rel.signal(2, rel.abort)  # Keyboard Interrupt
     rel.dispatch()
