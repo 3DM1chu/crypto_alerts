@@ -7,6 +7,7 @@ import json
 from decouple import config
 from typing import List
 import aiohttp
+from rel import rel
 
 # VERSION 3 - BINANCE REST API
 TELEGRAM_TOKEN = config("TELEGRAM_TOKEN")
@@ -245,7 +246,7 @@ async def fetch_coin_price(session, coin, semaphore):
             current_price = float(coin_data[4])
             token = tokens[getIndexOfCoin(coin["symbol"])]
             token.addPriceEntry(current_price, datetime.now())
-            #print(f"{coin_data}")
+            print(f"{coin_data}")
     except:
         print("ok, skip")
     semaphore.release()
@@ -265,3 +266,5 @@ if __name__ == "__main__":
     tokens: List[Token] = loadTokensHistoryFromFile()
     coins = loadCoinsToFetchFromFile()
     asyncio.run(fetch_all_coin_prices(coins))
+    rel.signal(2, rel.abort)  # Keyboard Interrupt
+    rel.dispatch()
